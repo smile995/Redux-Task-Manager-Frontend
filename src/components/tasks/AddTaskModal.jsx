@@ -1,19 +1,22 @@
+import { useDispatch } from "react-redux";
 import Modal from "../ui/Modal";
 import { useForm } from "react-hook-form";
+import { addTask } from "../../redux/features/tasks/taskSlice";
 const AddTaskModal = ({ isOpen, setIsOpen }) => {
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
   const handleCancel = () => {
     reset();
     setIsOpen(false);
   };
   const handleAddTask = (data) => {
-    console.log(data);
+    dispatch(addTask(data));
     handleCancel();
   };
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Add Task Form">
       <form onSubmit={handleSubmit(handleAddTask)}>
-        <div className="mt-2" >
+        <div className="mt-2">
           <label htmlFor="title"> Title</label>
           <input
             className="w-full rounded"
@@ -22,7 +25,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
             id="title"
           />
         </div>
-        <div className="mt-2" >
+        <div className="mt-2">
           <label htmlFor="description"> Description</label>
           <input
             className="w-full rounded"
@@ -31,7 +34,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
             id="description"
           />
         </div>
-        <div className="mt-2" >
+        <div className="mt-2">
           <label htmlFor="deadline"> Deadline</label>
           <input
             className="w-full rounded"
@@ -40,7 +43,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
             id="deadline"
           />
         </div>
-        <div className="mt-2" >
+        <div className="mt-2">
           <label>Assign to</label>
           <select {...register("asign")} className="w-full rounded">
             <option value="Shanto">Shanto</option>
@@ -52,13 +55,12 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
             <option value="Badhon">Badhon</option>
           </select>
         </div>
-        <div className="mt-2" >
+        <div className="mt-2">
           <label>Priority</label>
           <select {...register("priority")} className="w-full rounded">
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-            
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
           </select>
         </div>
         <div className="flex justify-between items-center mt-4 ">
