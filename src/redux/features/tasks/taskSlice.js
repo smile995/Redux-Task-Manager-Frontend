@@ -7,7 +7,7 @@ const initialState = {
       title: "Remove Button",
       description:
         "We need a remove button in our task card. Meke the button red and use Heroicon for tashbin icon.",
-      date: "2023-08-28",
+        deadline: "2023-08-28",
       assignedTo: "Mir Hussain",
       priority: "high",
     },
@@ -19,7 +19,7 @@ const tasksSlice = createSlice({
   name: "tasksSlice",
   initialState,
   reducers: {
-    addTask: (state, { payload }) => {
+    addTask: (state, { payload }) => { 
       if (state?.tasks?.length === 0) {
         state?.tasks?.push({ id: 1, status: "pending", ...payload });
       } else {
@@ -36,7 +36,7 @@ const tasksSlice = createSlice({
     },
     updateStatus: (state, {payload}) => {   
       const target = state?.tasks?.find((task) => task?.id == payload.id);
-      target.status=payload.status
+      target.status=payload.status;
     },
     userTasks:(state,{payload})=>{
       const tasks=state.tasks.filter((task)=>task.assignedTo===payload)

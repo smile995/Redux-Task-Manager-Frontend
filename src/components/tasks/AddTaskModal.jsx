@@ -45,7 +45,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
         </div>
         <div className="mt-2">
           <label>Assign to</label>
-          <select {...register("asign")} className="w-full rounded">
+          <select {...register("assignedTo")} className="w-full rounded">
             <option value="Shanto">Shanto</option>
             <option value="Anamul">Anamul</option>
             <option value="Hamza">Hamza</option>
